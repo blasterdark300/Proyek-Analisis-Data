@@ -53,5 +53,5 @@ streamlit run dashboard/dashboard1.py
 ## Hasil Analisis 📊
 Berikut adalah hasil visualisasi dari analisis data e-commerce:
 
-![Hasil Analisis](https://raw.githubusercontent.com/blasterdark300/Proyek-Analisis-Data/submission-akhir/Hasil.gif)
+![Hasil Analisis](https://raw.githubusercontent.com/blasterdark300/Proyek-Analisis-Data/submission-akhir/hasil.gif)
 
