@@ -43,8 +43,12 @@ Dashboard ini dibuat menggunakan **Streamlit** untuk menganalisis data e-commerc
 
 
 2. Jalankan dashboard Streamlit
+
+local file dataset :
 streamlit run dashboard/dashboard.py
 
+github dataset online :
+streamlit run dashboard/dashboard1.py
 
 ## Hasil Analisis 📊
 Berikut adalah hasil visualisasi dari analisis data e-commerce:
