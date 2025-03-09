@@ -132,7 +132,6 @@ st.pyplot(fig)
 
 # **3.8 Sebaran lokasi pelanggan**
 st.subheader("3.8 Bagaimana Sebaran Lokasi Pelanggan di Brasil?")
-
 geolocation_sample = geolocation.sample(10000, random_state=42)
 
 def plot_brazil_map(data):
@@ -140,16 +139,8 @@ def plot_brazil_map(data):
     ax.scatter(data["geolocation_lng"], data["geolocation_lat"], s=0.5, alpha=0.5, color="blue")
     
     brazil_map_url = 'https://i.pinimg.com/originals/3a/0c/e1/3a0ce18b3c842748c255bc0aa445ad41.jpg'
-    
-    try:
-        response = requests.get(brazil_map_url, stream=True)
-        if response.status_code == 200:
-            brazil = Image.open(BytesIO(response.content))
-            ax.imshow(brazil, extent=[-73.98283055, -33.8, -33.75116944, 5.4], alpha=0.5)
-        else:
-            st.error("Gagal memuat peta Brasil. Pastikan URL gambar masih tersedia.")
-    except requests.exceptions.RequestException as e:
-        st.error(f"Gagal mengakses peta Brasil: {e}")
+    brazil = mpimg.imread(urllib.request.urlopen(brazil_map_url), 'jpg')
+    ax.imshow(brazil, extent=[-73.98283055, -33.8, -33.75116944, 5.4], alpha=0.5)
 
     ax.set_title("Sebaran Lokasi Pelanggan di Brasil")
     plt.axis("off")
