@@ -118,14 +118,19 @@ st.pyplot(fig)
 
 # **3.6 Distribusi rating pelanggan**
 st.subheader("3.6 Bagaimana Review Score Terdistribusi?")
+# Hitung jumlah review per skor
 review_counts = df_filtered["review_score"].value_counts().sort_index()
 
-fig, ax = plt.subplots(figsize=(8,5))
-review_counts.plot(kind="bar", color="orange", ax=ax)
-ax.set_xlabel("Review Score")
-ax.set_ylabel("Jumlah Review")
-ax.set_title("Distribusi Review Score")
-st.pyplot(fig)
+# Cek apakah review_counts kosong sebelum membuat plot
+if review_counts.empty:
+    st.warning("Tidak ada data review dalam rentang tanggal yang dipilih.")
+else:
+    fig, ax = plt.subplots(figsize=(8,5))
+    review_counts.plot(kind="bar", color="orange", ax=ax)
+    ax.set_xlabel("Review Score")
+    ax.set_ylabel("Jumlah Review")
+    ax.set_title("Distribusi Review Score")
+    st.pyplot(fig)
 
 # **3.7 Rata-rata waktu pengiriman**
 st.subheader("3.7 Berapa Lama Waktu yang Dibutuhkan untuk Pengiriman?")
