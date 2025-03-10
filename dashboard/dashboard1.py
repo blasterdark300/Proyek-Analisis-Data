@@ -142,12 +142,18 @@ st.pyplot(fig)
 
 # **3.8 Sebaran lokasi pelanggan**
 st.subheader("3.8 Bagaimana Sebaran Lokasi Pelanggan di Brasil?")
-geolocation_sample = geolocation.sample(10000, random_state=42)
+
+# Filter geolocation hanya untuk pelanggan yang ada di df_filtered
+filtered_geolocation = geolocation[geolocation['geolocation_zip_code_prefix'].isin(df_filtered['customer_zip_code_prefix'])]
+
+# Ambil sampel untuk ditampilkan agar tetap responsif
+geolocation_sample = filtered_geolocation.sample(min(10000, len(filtered_geolocation)), random_state=42)
 
 def plot_brazil_map(data):
     fig, ax = plt.subplots(figsize=(10, 10))
-    ax.scatter(data["geolocation_lng"], data["geolocation_lat"], s=0.5, alpha=0.5, color="blue")
+    ax.scatter(data["geolocation_lng"], data["geolocation_lat"], s=2, alpha=0.7, color="blue")  # Titik lebih jelas
     
+    # Gambar latar peta Brasil
     brazil_map_url = 'https://i.pinimg.com/originals/3a/0c/e1/3a0ce18b3c842748c255bc0aa445ad41.jpg'
     brazil = mpimg.imread(urllib.request.urlopen(brazil_map_url), 'jpg')
     ax.imshow(brazil, extent=[-73.98283055, -33.8, -33.75116944, 5.4], alpha=0.5)
